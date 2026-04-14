@@ -31,6 +31,8 @@ You can include a simple diagram or bullet list if helpful.
 
 ---
 
+The first thing that happens in a scoring system is that there are a set of rules created in order to reduce the number of songs from a large amount into a manageable amount. Then the songs are individually run through a scoring rule, where they are rated based on rules that the system has established. Then the songs are put through a ranking rule in order to create an order for the songs based on the rules that were provided. Finally, we have a way to filter through the system and remove songs that may be repeating, region-locked, or blocked by the user. 
+
 ## Getting Started
 
 ### Setup
