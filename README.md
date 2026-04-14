@@ -142,11 +142,10 @@ VibeFinder 1.0
 - What is this system trying to do
 - Who is it for
 
-Example:
+
 
  This model suggests 3 to 5 songs from a small catalog based on a user's preferred genre, mood, and energy level. It is for classroom exploration only, not for real users.
 
----
 
 ## 3. How It Works (Short Explanation)
 
