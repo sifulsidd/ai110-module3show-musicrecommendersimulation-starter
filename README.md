@@ -1,5 +1,7 @@
 # 🎵 Music Recommender Simulation
 
+The first thing that happens in a scoring system is that there are a set of rules created in order to reduce the number of songs from a large amount into a manageable amount. Then the songs are individually run through a scoring rule, where they are rated based on rules that the system has established. Then the songs are put through a ranking rule in order to create an order for the songs based on the rules that were provided. Finally, we have a way to filter through the system and remove songs that may be repeating, region-locked, or blocked by the user. 
+
 ## Project Summary
 
 In this project you will build and explain a small music recommender system.
@@ -17,21 +19,14 @@ Replace this paragraph with your own summary of what your version does.
 
 ## How The System Works
 
-Explain your design in plain language.
+Each `Song` in this system is represented by thirteen attributes: a unique ID, title, artist, and ten numerical or categorical features — genre, mood, energy, tempo (BPM), valence (emotional positivity), danceability, acousticness, instrumentalness, speechiness, and popularity. The `UserProfile` mirrors those features as preferences: a favorite genre, a favorite mood, a boolean for whether the user likes acoustic music, and numerical targets for energy, valence, danceability, tempo, instrumentalness, speechiness, and popularity. To compute a score for each song, the `Recommender` runs every song in the catalog through a fixed recipe: it awards +2.0 points for a genre match, +1.5 points for a mood match, and +1.0 points when the user likes acoustic music and the song's acousticness is at or above 0.6. For the remaining features, it adds similarity points using the formula `(1 - abs(song.value - user.target)) * weight`, with weights of 1.5 for energy, 1.0 each for valence and danceability, 0.75 for tempo, 0.5 each for instrumentalness and speechiness, and 0.25 for popularity — giving a maximum possible score of 10.0. Once every song has been scored, the system sorts the full list by score in descending order and returns the top `k` results as the final recommendations.
 
-Some prompts to answer:
 
-- What features does each `Song` use in your system
-  - For example: genre, mood, energy, tempo
-- What information does your `UserProfile` store
-- How does your `Recommender` compute a score for each song
-- How do you choose which songs to recommend
-
-You can include a simple diagram or bullet list if helpful.
 
 ---
 
-The first thing that happens in a scoring system is that there are a set of rules created in order to reduce the number of songs from a large amount into a manageable amount. Then the songs are individually run through a scoring rule, where they are rated based on rules that the system has established. Then the songs are put through a ranking rule in order to create an order for the songs based on the rules that were provided. Finally, we have a way to filter through the system and remove songs that may be repeating, region-locked, or blocked by the user. 
+
+
 
 ## Getting Started
 
