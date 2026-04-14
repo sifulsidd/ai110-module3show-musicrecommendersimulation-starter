@@ -243,6 +243,8 @@ A few sentences about what you learned:
 - How did building this change how you think about real music recommenders
 - Where do you think human judgment still matters, even if the model seems "smart"
 
+What surprised me is how accurate it was based on the data provided. The algorithm seemed to figure out exactly how to evaluate each statistic in order to create accurate scoring results. I feel as though as we changed certain aspects to change the project, I learned how the manipulation of the scoring changed. I also learned where the model was stronger and what characteristics it valued more. Human judgement still matters because there is a lot of overlap between genres. As a result, there should be a human element in order to evaluate everythign is working properly. 
+
 
 ## Terminal Screenshot
 <a href="images/terminal_screenshot.png" target="_blank"> Terminal Screenshot
