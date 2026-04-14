@@ -13,57 +13,74 @@ from recommender import load_songs, recommend_songs, UserProfile
 
 
 def main() -> None:
-    
-    # Starter example profile
-    user_prefs = {"genre": "pop", "mood": "happy", "energy": 0.8}
-    
+
     songs = load_songs("data/songs.csv")
     print(f"Loaded songs: {len(songs)}")
 
-    # ADDED: Single test profile used for all recommendation comparisons.
-    # Persona — "Alex": a late-night, low-energy listener who prefers
-    # acoustic and instrumental sounds over high-intensity electronic music.
-    # Changing values here automatically updates both the OOP and functional paths.
-    # test_user = UserProfile(
-    #     favorite_genre="lofi",            # broad style preference
-    #     favorite_mood="chill",            # listening intent
-    #     target_energy=0.38,               # calm, not intense
-    #     target_valence=0.62,              # moderately positive, not euphoric
-    #     target_danceability=0.55,         # some groove, not a dancefloor vibe
-    #     target_tempo_bpm=80,              # slow to mid tempo
-    #     likes_acoustic=True,              # prefers organic over electronic sound
-    #     target_instrumentalness=0.75,     # prefers music without heavy vocals
-    #     target_speechiness=0.04,          # dislikes rap / spoken word content
-    #     target_popularity=0.45,           # leans niche over mainstream
-    # )
+    # --- User Preference Profiles ---
 
-    # # Derive the dict from test_user so both paths always stay in sync
-    # user_prefs = {
-    #     "genre":            test_user.favorite_genre,
-    #     "mood":             test_user.favorite_mood,
-    #     "energy":           test_user.target_energy,
-    #     "valence":          test_user.target_valence,
-    #     "danceability":     test_user.target_danceability,
-    #     "tempo_bpm":        test_user.target_tempo_bpm,
-    #     "acousticness":     0.80,
-    #     "instrumentalness": test_user.target_instrumentalness,
-    #     "speechiness":      test_user.target_speechiness,
-    #     "popularity":       test_user.target_popularity,
-    # }
+    # Persona 1 — "Jordan": gym-goer who wants maximum energy and danceability.
+    # Loves mainstream pop anthems with bright, happy vibes and fast tempos.
+    high_energy_pop = {
+        "genre":            "pop",
+        "mood":             "happy",
+        "energy":           0.92,       # very high intensity
+        "valence":          0.85,       # upbeat and positive
+        "danceability":     0.90,       # made for movement
+        "tempo_bpm":        128,        # classic dance/EDM tempo
+        "acousticness":     0.10,       # prefers produced electronic sound
+        "instrumentalness": 0.05,       # wants vocals front and center
+        "speechiness":      0.08,       # melodic, not rap-heavy
+        "popularity":       0.85,       # loves chart hits
+    }
 
-    recommendations = recommend_songs(user_prefs, songs, k=5)
+    # Persona 2 — "Sam": late-night student who studies to mellow background music.
+    # Drawn to instrumental, acoustic textures at a slow, unhurried pace.
+    chill_lofi = {
+        "genre":            "lofi",
+        "mood":             "chill",
+        "energy":           0.30,       # low intensity, background-friendly
+        "valence":          0.55,       # gently positive, not euphoric
+        "danceability":     0.45,       # some groove, not a dancefloor vibe
+        "tempo_bpm":        78,         # slow and relaxed
+        "acousticness":     0.80,       # organic, warm textures
+        "instrumentalness": 0.80,       # mostly music, minimal vocals
+        "speechiness":      0.04,       # no rapping or spoken word
+        "popularity":       0.35,       # prefers underground / niche finds
+    }
 
-    # ADDED: print active profile so simulation output shows whose taste is
-    # being used for comparisons — makes manual testing easier to interpret.
-    # print(f"\nActive profile: {test_user}")
-    print("\nTop recommendations:\n")
-    for rec in recommendations:
-        # You decide the structure of each returned item.
-        # A common pattern is: (song, score, explanation)
-        song, score, explanation = rec
-        print(f"{song['title']} - Score: {score:.2f}")
-        print(f"Because: {explanation}")
-        print()
+    # Persona 3 — "Riley": headbanging metal fan who craves raw intensity.
+    # Wants dark, aggressive songs with maximum energy and very fast tempos.
+    deep_intense_rock = {
+        "genre":            "rock",
+        "mood":             "intense",
+        "energy":           0.95,       # as loud and aggressive as possible
+        "valence":          0.20,       # dark, brooding emotional tone
+        "danceability":     0.35,       # not danceable — headbang territory
+        "tempo_bpm":        160,        # fast, driving rhythm
+        "acousticness":     0.05,       # electric guitars, distortion — no acoustic
+        "instrumentalness": 0.15,       # heavy vocals/screaming are part of the appeal
+        "speechiness":      0.10,       # some lyrical intensity is fine
+        "popularity":       0.40,       # appreciates cult classics over pop crossovers
+    }
+
+    profiles = [
+        ("High-Energy Pop  (Jordan)", high_energy_pop),
+        ("Chill Lofi       (Sam)",    chill_lofi),
+        ("Deep Intense Rock (Riley)", deep_intense_rock),
+    ]
+
+    for label, user_prefs in profiles:
+        print(f"\n{'='*55}")
+        print(f"Profile: {label}")
+        print(f"{'='*55}")
+        recommendations = recommend_songs(user_prefs, songs, k=5)
+        print("\nTop recommendations:\n")
+        for rec in recommendations:
+            song, score, explanation = rec
+            print(f"{song['title']} - Score: {score:.2f}")
+            print(f"Because: {explanation}")
+            print()
 
 
 if __name__ == "__main__":
