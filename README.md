@@ -206,3 +206,8 @@ A few sentences about what you learned:
 - How did building this change how you think about real music recommenders
 - Where do you think human judgment still matters, even if the model seems "smart"
 
+<a href="terminal_screenshot.png" target="_blank">
+  <img src="terminal_screenshot.png" alt="Music Recommender terminal output">
+</a>
+
+
