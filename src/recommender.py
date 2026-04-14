@@ -7,6 +7,9 @@ class Song:
     Represents a song and its attributes.
     Required by tests/test_recommender.py
     """
+    # ADDED: instrumentalness, speechiness, popularity — three new numerical
+    # features that capture vocal presence, lyric density, and mainstream
+    # appeal, giving the recommender more dimensions to score against.
     id: int
     title: str
     artist: str
@@ -17,6 +20,9 @@ class Song:
     valence: float
     danceability: float
     acousticness: float
+    instrumentalness: float   # 0=vocals present, 1=fully instrumental
+    speechiness: float        # 0=melodic, 1=spoken word / rap-heavy
+    popularity: float         # 0=niche, 1=mainstream chart hit
 
 @dataclass
 class UserProfile:
@@ -24,10 +30,19 @@ class UserProfile:
     Represents a user's taste preferences.
     Required by tests/test_recommender.py
     """
+    # ADDED: target_valence, target_danceability, target_tempo_bpm fill the
+    # gap between Song's numerical fields and UserProfile's scoring targets —
+    # every float on Song now has a corresponding preference to score against.
     favorite_genre: str
     favorite_mood: str
     target_energy: float
     likes_acoustic: bool
+    target_instrumentalness: float   # how much the user prefers instrumental music
+    target_speechiness: float        # tolerance for rap/spoken word content
+    target_popularity: float         # 0=prefers niche discoveries, 1=prefers hits
+    target_valence: float            # preferred emotional positivity (0=sad, 1=happy)
+    target_danceability: float       # preferred rhythmic drive (0=still, 1=dancefloor)
+    target_tempo_bpm: float          # preferred beats per minute
 
 class Recommender:
     """
