@@ -231,6 +231,7 @@ Examples:
 - Use more features, like tempo ranges or lyric themes
 
 ---
+If given more time, the recommender could be improved in five key ways: replacing the binary genre and mood string matching with an embedding-based proximity model so that adjacent genres like rock and metal earn partial credit rather than scoring zero; introducing per-user dimension weights so that a listener who cares deeply about tempo but not at all about popularity can express that priority rather than having the same fixed formula applied to everyone; adding a diversity re-ranking step that penalizes consecutive recommendations that are too similar to each other, preventing the top-5 list from clustering into nearly identical songs; supporting preference ranges instead of single target values so a user can specify "energy between 0.6 and 0.8" and only receive a penalty when a song falls outside that window; and finally, incorporating a listening history decay that reduces the score of recently recommended songs so the system surfaces novelty over time instead of returning the same results on every run.
 
 ## 9. Personal Reflection
 
