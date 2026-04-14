@@ -114,8 +114,8 @@ def score_song(user_prefs: Dict, song: Dict) -> Tuple[float, str]:
 
     # --- Flat match bonuses ---
     if song["genre"] == user_prefs.get("genre", ""):
-        score += 1.0
-        reasons.append("genre match (+1.0)")
+        score += 2.0
+        reasons.append("genre match (+2.0)")
 
     if song["mood"] == user_prefs.get("mood", ""):
         score += 1.5
@@ -125,10 +125,14 @@ def score_song(user_prefs: Dict, song: Dict) -> Tuple[float, str]:
         score += 1.0
         reasons.append("acoustic preference match (+1.0)")
 
+    if user_prefs.get("acousticness", 0.5) <= 0.4 and song["acousticness"] <= 0.4:
+        score += 1.0
+        reasons.append("non-acoustic preference match (+1.0)")
+
     # --- Similarity points ---
     # Formula: (1 - |song_value - user_target|) * max_points
     # Produces a value between 0 and max_points — closer = more points.
-    energy_pts = (1 - abs(song["energy"] - user_prefs.get("energy", 0.5))) * 3.0
+    energy_pts = (1 - abs(song["energy"] - user_prefs.get("energy", 0.5))) * 1.5
     score += energy_pts
     reasons.append(f"energy similarity (+{energy_pts:.2f})")
 
